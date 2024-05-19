@@ -72,20 +72,7 @@ This repository contains the frontend code for a full-stack application that all
 3. The backend processes the question, finds the answer from the vector store, and sends the answer back to the frontend.
 4. The frontend displays the answer on the screen.
 
-### Data-Flow
 
-graph LR
-  A[User] -->|Uploads PDFs| B[Upload Component]
-  B -->|POST /upload| C[Backend Server]
-  C -->|Extracts Text, Splits, Vectorizes| D[Vector Store]
-  D -->|Stores PDF Metadata| E[Database]
-  E -->|Success Response| B
-  A -->|Asks Question| F[Question Component]
-  F -->|POST /ask| C
-  C -->|Retrieves Vector Store, Generates Conversation Chain, Handles Question| D
-  D -->|Sends Answer| C
-  C -->|Answer Response| F
-  F -->|Displays Answer| A
 
 
 
