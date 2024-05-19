@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# Fullstack Internship Assignment - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This repository contains the frontend code for a full-stack application that allows users to upload PDF documents, ask questions regarding their content, and receive answers. Users can upload multiple PDF files, ask questions related to the content of the uploaded files, and receive answers in real-time. The frontend is built using React and Tailwind CSS.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **PDF Upload**: Users can upload multiple PDF documents by clicking on the "Upload PDF" button.
+- **Ask Questions**: Users can enter questions related to the content of the uploaded PDFs.
+- **Receive Answers**: Users receive answers to their questions, which are displayed on the screen.
+- **Follow-up Questions**: Users can ask follow-up questions on the same document.
+- **Persistent Questions**: Users can ask questions about previously uploaded files, and the application will answer based on the stored content for that particular session.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tools and Technologies
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Framework**: React
+- **Styling**: Tailwind CSS
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Prerequisites
 
-### `npm run build`
+- Node.js (v14 or higher)
+- npm or yarn
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**:
+   
+   ```bash
+   https://github.com/jayprakash25/AI-PDF-Frontend.git
+   cd AI-PDF-Frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies:**:
+   
+   ```bash
+   npm install
+      # or
+   yarn install
 
-### `npm run eject`
+3. **Run the application:**:
+   
+   ```bash
+   npm start
+    # or
+    yarn start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Application Architecture
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Components
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. **Navbar Component**: This component allows users to upload multiple PDF documents. It sends a POST request to the backend server with the files.
 
-## Learn More
+2. **TextField Component**: This component provides an interface for users to enter questions. It sends a POST request to the backend server with the question and the identifier of the uploaded PDF.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. **Chat component**: This component displays the answer returned from the backend server.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Workflow
 
-### Code Splitting
+### Uploading PDFs:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Users click the "Upload PDF" button to select and upload PDF files.
+2. The frontend sends a POST request to the backend server with the uploaded files.
+3. The backend processes the files and stores them, returning a success response to the frontend.
 
-### Analyzing the Bundle Size
+### Asking Questions:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+1. Users enter a question in the input field and submits it.
+2. The frontend sends a POST request to the backend server with the question.
+3. The backend processes the question, finds the answer from the vector store, and sends the answer back to the frontend.
+4. The frontend displays the answer on the screen.
 
-### Making a Progressive Web App
+### Data-Flow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+graph LR
+  A[User] -->|Uploads PDFs| B[Upload Component]
+  B -->|POST /upload| C[Backend Server]
+  C -->|Extracts Text, Splits, Vectorizes| D[Vector Store]
+  D -->|Stores PDF Metadata| E[Database]
+  E -->|Success Response| B
+  A -->|Asks Question| F[Question Component]
+  F -->|POST /ask| C
+  C -->|Retrieves Vector Store, Generates Conversation Chain, Handles Question| D
+  D -->|Sends Answer| C
+  C -->|Answer Response| F
+  F -->|Displays Answer| A
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   
