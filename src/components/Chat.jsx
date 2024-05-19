@@ -18,16 +18,20 @@ export default function Chat({ chat: { type, text } }) {
 
   return (
     <div
-      className={`flex py-4 px-2 rounded-lg space-x-4 w-full items-start font-semibold ${chatDirection}`}
+      className={`flex py-4 px-2 rounded-lg space-x-2 md:space-x-4 w-full items-start font-semibold ${chatDirection}`}
     >
       {/* AI avatar, hidden for questions */}
-      <div className={`rounded ${type === QUESTION_TYPE && "hidden"}`}>
-        <img className="w-10 h-10" src={ai} alt=".png" />
+      <div
+        className={`rounded w-6 h-6 md:w-10 md:h-10 ${
+          type === QUESTION_TYPE && "hidden"
+        }`}
+      >
+        <img className="w-full h-full" src={ai} alt=".png" />
       </div>
 
       {/* Chat text, with  styling for questions */}
       <div
-        className={`max-w-64 text-start md:max-w-lg lg:max-w-3xl ${
+        className={`w-[15.5rem] md:w-auto text-start md:max-w-lg lg:max-w-3xl ${
           type === QUESTION_TYPE && "bg-slate-200 px-4 py-2 rounded-lg"
         }`}
       >
