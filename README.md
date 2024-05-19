@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# Fullstack Internship Assignment - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This repository contains the frontend code for a full-stack application that allows users to upload PDF documents, ask questions regarding their content, and receive answers. Users can upload multiple PDF files, ask questions related to the content of the uploaded files, and receive answers in real-time. The frontend is built using React and Tailwind CSS.
 
-In the project directory, you can run:
+## Demo
+https://www.loom.com/share/e229234a4f8f42acbcc2f7512faf428d?sid=9e1f9c86-ab5a-4d0c-85f8-6c85d596a405
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **PDF Upload**: Users can upload multiple PDF documents by clicking on the "Upload PDF" button.
+- **Ask Questions**: Users can enter questions related to the content of the uploaded PDFs.
+- **Receive Answers**: Users receive answers to their questions, which are displayed on the screen.
+- **Follow-up Questions**: Users can ask follow-up questions on the same document.
+- **Persistent Questions**: Users can ask questions about previously uploaded files, and the application will answer based on the stored content for that particular session.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tools and Technologies
 
-### `npm test`
+- **Framework**: React
+- **Styling**: Tailwind CSS
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Setup Instructions
 
-### `npm run build`
+### Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Node.js (v14 or higher)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository**:
+   
+   ```bash
+   https://github.com/jayprakash25/AI-PDF-Frontend.git
+   cd AI-PDF-Frontend
 
-### `npm run eject`
+2. **Install dependencies:**:
+   
+   ```bash
+   npm install
+      # or
+   yarn install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Run the application:**:
+   
+   ```bash
+   npm start
+    # or
+    yarn start
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Application Architecture
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Components
 
-## Learn More
+1. **Navbar Component**: This component allows users to upload multiple PDF documents. It sends a POST request to the backend server with the files.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. **TextField Component**: This component provides an interface for users to enter questions. It sends a POST request to the backend server with the question and the identifier of the uploaded PDF.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Chat component**: This component displays the answer returned from the backend server.
 
-### Code Splitting
+## Workflow
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Uploading PDFs:
 
-### Analyzing the Bundle Size
+1. Users click the "Upload PDF" button to select and upload PDF files.
+2. The frontend sends a POST request to the backend server with the uploaded files.
+3. The backend processes the files and stores them, returning a success response to the frontend.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Asking Questions:
 
-### Making a Progressive Web App
+1. Users enter a question in the input field and submits it.
+2. The frontend sends a POST request to the backend server with the question.
+3. The backend processes the question, finds the answer from the vector store, and sends the answer back to the frontend.
+4. The frontend displays the answer on the screen.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+   
