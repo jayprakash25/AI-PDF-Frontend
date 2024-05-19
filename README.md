@@ -5,7 +5,7 @@
 This repository contains the frontend code for a full-stack application that allows users to upload PDF documents, ask questions regarding their content, and receive answers. Users can upload multiple PDF files, ask questions related to the content of the uploaded files, and receive answers in real-time. The frontend is built using React and Tailwind CSS.
 
 ## Demo
-https://www.loom.com/share/e229234a4f8f42acbcc2f7512faf428d?sid=d6fbc404-21bc-4f37-b856-5811034a629d
+https://www.loom.com/share/e229234a4f8f42acbcc2f7512faf428d?sid=9e1f9c86-ab5a-4d0c-85f8-6c85d596a405
 
 ## Features
 
