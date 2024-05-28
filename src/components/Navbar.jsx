@@ -4,13 +4,16 @@ import { logo, add } from "../assets";
 import { CiFileOn } from "react-icons/ci";
 import axios from "axios";
 import Alert from "./Alert";
+import Loader from "./Loader";
 
 export default function Navbar() {
   const [fileNames, setFileNames] = useState([]);
   const { setFile } = useContext(FileContext);
   const [errMessage, setErrMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = async (event) => {
+    setLoading(true);
     const selectedFiles = Array.from(event.target.files);
     const nonPdfFiles = selectedFiles.filter(
       (file) => file.type !== "application/pdf"
@@ -41,6 +44,7 @@ export default function Navbar() {
       );
 
       setFile(true);
+      setLoading(false);
 
       if (response.data.status !== "success") {
         setErrMessage("File was not uploaded successfully. Please try again.");
@@ -48,6 +52,7 @@ export default function Navbar() {
 
       // console.log(response.data);
     } catch (error) {
+      setLoading(false);
       console.error(error);
       setErrMessage("An error occurred while uploading the file.");
     }
@@ -77,33 +82,37 @@ export default function Navbar() {
         </div>
 
         {/* file input*/}
-        <div>
-          <label>
-            {/* small devices */}
-            <div className="md:hidden border-2 cursor-pointer rounded-lg w-9 h-9  border-black flex  p-2.5">
-              <img className="" src={add} alt="add" />
-              <input
-                onChange={handleFileChange}
-                type="file"
-                id="file"
-                hidden
-                multiple
-              />
-            </div>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div>
+            <label>
+              {/* small devices */}
+              <div className="md:hidden border-2 cursor-pointer rounded-lg w-9 h-9  border-black flex  p-2.5">
+                <img className="" src={add} alt="add" />
+                <input
+                  onChange={handleFileChange}
+                  type="file"
+                  id="file"
+                  hidden
+                  multiple
+                />
+              </div>
 
-            {/* medium & large devices */}
-            <div className="hidden md:flex space-x-1 items-center font-semibold border-2 cursor-pointer text-sm py-2 justify-center border-black rounded-lg w-40">
-              <p>Upload PDF</p>
-              <input
-                onChange={handleFileChange}
-                type="file"
-                id="file"
-                hidden
-                multiple
-              />
-            </div>
-          </label>
-        </div>
+              {/* medium & large devices */}
+              <div className="hidden md:flex space-x-1 items-center font-semibold border-2 cursor-pointer text-sm py-2 justify-center border-black rounded-lg w-40">
+                <p>Upload PDF</p>
+                <input
+                  onChange={handleFileChange}
+                  type="file"
+                  id="file"
+                  hidden
+                  multiple
+                />
+              </div>
+            </label>
+          </div>
+        )}
       </div>
       {/* alert  */}
       {errMessage && <Alert message={errMessage} />}
