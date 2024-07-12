@@ -1,4 +1,4 @@
-# Fullstack Internship Assignment - Frontend
+# AI-PDF-QUERY - Frontend
 
 ## Overview
 
